@@ -90,27 +90,4 @@ public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHo
             }
         }
     }
-
-  /*  static class ListDiffCallback<D extends ListDiffInterface> extends DiffUtil.ItemCallback<SortTypeUI> implements ListDiffInterface<SortTypeUI> {
-        @Override
-        public boolean areItemsTheSame(@NonNull SortTypeUI oldItem, @NonNull SortTypeUI newItem) {
-            return oldItem.getSortType() == newItem.getSortType();
-        }
-
-        @Override
-        public boolean areContentsTheSame(@NonNull SortTypeUI oldItem, @NonNull SortTypeUI newItem) {
-            return oldItem.equals(newItem);
-        }
-
-        @Nullable
-        @Override
-        public Object getChangePayload(@NonNull SortTypeUI oldItem, @NonNull SortTypeUI newItem) {
-            return newItem;
-        }
-
-        @Override
-        public boolean theSameAs(SortTypeUI sortTypeUI) {
-            return this.getSortType() == sortTypeUI.getSortType();
-        }
-    }*/
 }
