@@ -7,7 +7,8 @@ import java.util.Objects;
 
 import ru.yandex.practicum.contacts.presentation.main.ContactUi;
 
-public class BaseListDiffCallback<D> extends DiffUtil.ItemCallback<D> implements ListDiffInterface<BaseListDiffCallback> {
+// public class BaseListDiffCallback<D> extends DiffUtil.ItemCallback<D> implements ListDiffInterface<BaseListDiffCallback>
+public class BaseListDiffCallback <D extends ListDiffInterface<D>> extends DiffUtil.ItemCallback<D> {
 
 
     public boolean areItemsTheSame(@NonNull D oldItem, @NonNull D newItem) {
@@ -19,15 +20,13 @@ public class BaseListDiffCallback<D> extends DiffUtil.ItemCallback<D> implements
         return Objects.equals(oldItem, newItem);
     }
 
-  /*  @Override
-    public boolean theSameAs(D d){
-        return this.hashCode() == d.hashCode();
-    }*/
-
-    @Override
-    public boolean theSameAs(BaseListDiffCallback baseListDiffCallback) {
+    public boolean theSameAs(BaseListDiffCallback baseListDiffCallback){
         return this.hashCode() == baseListDiffCallback.hashCode();
     }
+
+/*    public boolean theSameAs(BaseListDiffCallback baseListDiffCallback) {
+        return this.hashCode() == baseListDiffCallback.hashCode();
+    }*/
 
     @Override
     public boolean equals(Object o) {
