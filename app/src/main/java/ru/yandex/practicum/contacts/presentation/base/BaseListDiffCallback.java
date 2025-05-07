@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import ru.yandex.practicum.contacts.presentation.main.ContactUi;
 
-public class BaseListDiffCallback<D extends ListDiffInterface> extends DiffUtil.ItemCallback<D> implements ListDiffInterface<D> {
+public class BaseListDiffCallback<D> extends DiffUtil.ItemCallback<D> implements ListDiffInterface<BaseListDiffCallback> {
 
 
     public boolean areItemsTheSame(@NonNull D oldItem, @NonNull D newItem) {
@@ -15,12 +15,18 @@ public class BaseListDiffCallback<D extends ListDiffInterface> extends DiffUtil.
     }
 
     public boolean areContentsTheSame(@NonNull D oldItem, @NonNull D newItem) {
-        return newItem.theSameAs(newItem);
+       // return oldItem.theSameAs(newItem);
+        return Objects.equals(oldItem, newItem);
     }
 
-    @Override
+  /*  @Override
     public boolean theSameAs(D d){
         return this.hashCode() == d.hashCode();
+    }*/
+
+    @Override
+    public boolean theSameAs(BaseListDiffCallback baseListDiffCallback) {
+        return this.hashCode() == baseListDiffCallback.hashCode();
     }
 
     @Override
@@ -28,11 +34,12 @@ public class BaseListDiffCallback<D extends ListDiffInterface> extends DiffUtil.
         return false;
     }
 
-    public <ContactUI> boolean areContentsTheSame(ContactUI oldItem, ContactUi newItem) {
+/*    public boolean areContentsTheSame(ContactUi oldItem, ContactUi newItem) {
         return Objects.equals(oldItem, newItem);
-    }
+    }*/
 
-    public Object getChangePayload(ContactUi oldItem, ContactUi newItem) {
+
+    public Object getChangePayload(@NonNull D oldItem, @NonNull D newItem) {
         return newItem;
     }
 }
